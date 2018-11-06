@@ -110,32 +110,8 @@ CNodo<T>* CArbolBinario<T>::CrearNodo(T elemento){
 	CNodo<T>* nuevo = new CNodo<T>(elemento);
 	return nuevo;
 }
-//template<class T>// metodo insert iterativo, me resulta mas sencillo.
-//void CArbolBinario<T>::insert(T elemento) { 
-//	CNodo<T>* nuevo = new CNodo<T>(elemento);
-//	CNodo<T>* root = raiz;
-//	CNodo<T>* padre = NULL;// root pass 
-//	if (raiz == NULL) {
-//		raiz = nuevo;
-//	}
-//	else {
-//		while (root != NULL) {
-//			padre = root;
-//			cout << "Datos del padre: "<<padre->datos << endl;
-//			cout << "Datos del elemento: " << elemento << endl;
-//			cout << "Se va a insertar a la : " << endl;
-//			if (DecidirCamino())
-//				root = root->der;
-//			else
-//				root = root->izq;
-//		}
-//		if (DecidirPadre(root))
-//			padre->izq = nuevo;
-//		else
-//			padre->der = nuevo;
-//	}
-//
-//}
+
+
 
 template<class T>
 bool CArbolBinario<T>::DecidirPadre(CNodo<T>* r) {// se decide el padre
@@ -150,68 +126,7 @@ bool CArbolBinario<T>::DecidirPadre(CNodo<T>* r) {// se decide el padre
 }
 
 
-//template<class T>
-//string CArbolBinario<T>::imprimeNivel(CNodo<T>* r, int niv) {
-//
-//	if (r) {
-//		string iz, der;
-//		stringstream ss;
-//		if (niv == 1) {
-//			ss << r->datos << " ";
-//			return ss.str();
-//		}
-//		else {
-//			niv -= 1;
-//			iz = imprimeNivel(r->izq, niv);
-//			der = imprimeNivel(r->der, niv);
-//		}
-//		ss << iz << " " << der;
-//		return ss.str();
-//	}
-//	else {
-//		return " ";
-//	}
-//}
-//template<class T>
-//int  CArbolBinario<T>::altura(CNodo<T>* r) {
-//	int a, b;
-//	if (r) {
-//		if (r->izq == NULL && r->der == NULL) {
-//			return 1;
-//
-//		}
-//		else {
-//			a = altura(r->izq);
-//			b = altura(r->der);
-//		}
-//
-//		if (a < b) {
-//			return b + 1;
-//		}
-//		else {
-//			return  a + 1;
-//		}
-//	}
-//	else
-//		return 0;
-//
-//}
-//template<class T>
-//int CArbolBinario<T>::cuentaNodos(CNodo<T>* r) {
-//	int a, b;
-//	if (r) {
-//		if (r->izq == NULL&&r->der == NULL) {
-//			return 1;
-//		}
-//		else {
-//			a = cuentaNodos(r->izq);
-//			b = cuentaNodos(r->der);
-//		}
-//		return a + b + 1;
-//	}
-//	else
-//		return 0;
-//}
+
 
 template<class T>
 void CArbolBinario<T>::borrarElemento(CNodo<T>* r, T elemento) {
@@ -290,7 +205,7 @@ bool CArbolBinario<T>::DecidirCamino() {
 }
 template<class T>
 void CArbolBinario<T>::insertarNodo(CNodo<T>* &root, T n, CNodo<T>* rp) {
-	if (root == NULL) {// si el pinshi nodo est· vacio lo inserto y ya :'v
+	if (root == NULL) {// si el pinshi nodo est√° vacio lo inserto y ya :'v
 		CNodo<T>* nuevo = new CNodo<T>(n);
 		nuevo->padre = rp;
 		root = nuevo;
@@ -305,30 +220,7 @@ void CArbolBinario<T>::insertarNodo(CNodo<T>* &root, T n, CNodo<T>* rp) {
 			insertarNodo(root->izq, n, root);
 	}
 }
-// metodo del profe
-//template<class T>
-//void CArbolBinario<T>::insertarOrden(T elemento) {
-//	CNodo<T>* nuevo = new CNodo<T>(elemento);
-//	CNodo<T>* root = raiz;
-//	CNodo<T>* padre = NULL;// root pass 
-//	if (raiz == NULL) {
-//		raiz = nuevo;
-//	}
-//	else {
-//		while (root != NULL) {
-//			padre = root;
-//			if (elemento < root->datos)
-//				root = root->izq;
-//			else
-//				root = root->der;
-//		}
-//
-//		if (padre->datos > elemento)
-//			padre->izq = nuevo;
-//		else
-//			padre->der = nuevo;
-//	}
-//} // metodo hecho por Caama
+
 template<class T>
 void CArbolBinario<T>::imprimir(CNodo<T>* r, int cont){
 
@@ -358,36 +250,6 @@ void CArbolBinario<T>::enOrden(CNodo<T>* r/*,int cont*/) {
 	
 }
 
-//}
-// se puede utilizar el root pass para entender por donde anda el root ..... que es lo mismo que si el nodo tuviera un padre o no ?
-// metodo del profe
-//template<class T>
-//void CArbolBinario<T>::poda(CNodo<T>* r, CNodo<T>* rp) {// root pass le sigue al root osea se necesitan dos punteros para recorrer el arbol 
-//	if (r != NULL) {// hay algo que se puede borrar
-//		if (r->izq == NULL && r->der == NULL) {
-//			CNodo<T>* borrado; // nodo para borrar elemento
-//			if (rp != NULL) {// estoy dentro del arbol... no se est· en la raiz
-//				if (r == rp->izq) {
-//					borrado = rp->izq;
-//					rp->izq = NULL;
-//				}
-//				else {
-//					borrado = rp->der;
-//					rp->der = NULL;
-//				}
-//			}
-//			else {// hay que borrar a la raiz
-//				borrado = raiz;
-//				raiz = NULL;
-//			}
-//			delete borrado;
-//		}
-//		else {
-//			poda(r->der, r);
-//			poda(r->izq, r);
-//		}
-//	}
-//}
 
 template<class T>
 void CArbolBinario<T>::borraMenor(CNodo<T>* root) {
@@ -435,74 +297,3 @@ int main() {
 	return 0;
 }
 
-//Akinator->insert(Ani1);
-	//Akinator->insert(Ani2);
-	//Akinator->insert(Ani3);
-	//Akinator->insert(Ani4);
-	//Akinator->insert(Ani5);
-	//Akinator->insert(Ani6);
-
-/*CArbolBinario<int>* arbol = new CArbolBinario<int>();
-
-cout << "Ingresando valores" << endl;
-arbol->insertarOrden(8);
-arbol->insertarOrden(6);
-arbol->insertarOrden(10);
-arbol->insertarOrden(12);
-arbol->insertarOrden(9);
-arbol->insertarOrden(85);
-arbol->insertarOrden(45);
-arbol->insertarOrden(5);
-arbol->insertarOrden(13);
-arbol->insertarOrden(16);
-CNodo<int>* root = arbol->raiz;*/
-
-//cout << "Imprimiendo el arbol en Orden " << endl;
-//arbol->enOrden(root);
-//cout << "----------------------------" << endl;
-
-//cout << "Imprimiendo el arbol podado " << endl;
-//arbol->poda(arbol->raiz, NULL);
-//cout << "Imprimiendo el arbol en Orden " << endl;
-//arbol->enOrden(arbol->raiz);
-
-/*arbol->borraMenor(root,NULL);
-arbol1->insertarNodo(arbol1->raiz, 10, NULL);
-arbol1->insertarNodo(arbol1->raiz, 8, NULL);
-cout << "Imprimiendo el arbol1 en Orden " << endl;
-CNodo<int>* root1 = arbol1->raiz;
-arbol1->enOrden(root1);
-cout << endl;
-cout << "----------------------------" << endl;
-cout << "Imprimiendo la altura del arbol " << endl;
-cout << "altura: " << arbol1->altura(root1) << endl;
-cout << "----------------------------" << endl;
-
-cout << "Imprimiendo el arbol1 en Orden " << endl;
-arbol1->enOrden(root1);
-cout << endl;
-cout << "----------------------------" << endl;
-
-cout << "Imprimiendo los nodos del arbol " << endl;
-cout << "Cantidad: " << arbol1->cuentaNodos(root1);
-cout << endl;
-cout << "----------------------------" << endl;
-
-
-cout << "Imprimiendo los nodos del nivel 3 " << endl;
-cout << arbol1->imprimeNivel(root1, 3);
-cout << endl;
-cout << "----------------------------" << endl;
-
-
-cout << "borrando el nodo menor " << endl;
-CNodo<int>* menor = arbol1->retornaMenor(arbol1->raiz);
-cout << menor->datos << endl;
-arbol1->borraMenor(root1);
-
-delete arbol1;
-
-
-
-
-*/
